@@ -1,6 +1,5 @@
 <?php
 
-use App\Actions\LoadRedirectCases;
 use App\Data\RedirectCaseData;
 use App\ValueObjects\HttpStatus;
 use App\ValueObjects\RedirectRange;

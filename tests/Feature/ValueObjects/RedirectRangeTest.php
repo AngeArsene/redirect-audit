@@ -19,7 +19,7 @@ dataset('invalid redirect ranges', [
 ]);
 
 it('rejects an invalid redirect range', function (int $min, int $max, string $message) {
-    expect(fn() => new RedirectRange($min, $max))
+    expect(fn () => new RedirectRange($min, $max))
         ->toThrow(InvalidArgumentException::class, $message);
 })->with('invalid redirect ranges');
 

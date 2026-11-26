@@ -12,7 +12,7 @@ it('fetches an HTTP response without following redirects', function () {
     $url = 'https://www.abc-immodiag.com/';
     Http::fake([$url => Http::response(['status' => 'ok'], 200)]);
 
-    $action = new FetchHttpResponse();
+    $action = new FetchHttpResponse;
     $response = $action->handle($url);
 
     expect($response->status())->toBe(200);
@@ -25,11 +25,11 @@ it('returns a redirect response without following its destination', function () 
     $url = 'https://abc-immodiag.com/';
     Http::fake([
         $url => Http::response(['status' => 'Moved Permanently'],
-        301,
-        ['Location' => 'https://www.abc-immodiag.com/'])
+            301,
+            ['Location' => 'https://www.abc-immodiag.com/']),
     ]);
 
-    $action = new FetchHttpResponse();
+    $action = new FetchHttpResponse;
     $response = $action->handle($url);
 
     expect($response->status())->toBe(301);

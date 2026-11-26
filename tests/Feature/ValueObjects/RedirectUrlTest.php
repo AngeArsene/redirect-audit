@@ -47,4 +47,3 @@ it('determines whether two redirect URLs are strictly equal', function (string $
 
     expect($firstRedirectUrl->equals($secondRedirectUrl))->toBe($expected);
 })->with('redirect url equality cases');
-

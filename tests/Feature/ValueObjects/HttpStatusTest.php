@@ -24,7 +24,7 @@ it('accepts a valid HTTP status code', function () {
     $count = random_int(1, 10); // random number of items (e.g. 1 to 10)
 
     $validValues = array_map(
-        static fn(): int => random_int(100, 599),
+        static fn (): int => random_int(100, 599),
         range(1, $count),
     );
 

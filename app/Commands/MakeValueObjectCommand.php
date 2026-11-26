@@ -44,7 +44,7 @@ class MakeValueObjectCommand extends GeneratorCommand
      */
     protected function getDefaultNamespace($rootNamespace): string
     {
-        return $rootNamespace . '\ValueObjects';
+        return $rootNamespace.'\ValueObjects';
     }
 
     /**

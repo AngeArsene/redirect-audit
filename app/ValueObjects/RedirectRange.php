@@ -30,7 +30,7 @@ final readonly class RedirectRange
      */
     public function contains(int $count): bool
     {
-        return ($count >= $this->min && $count <= $this->max);
+        return $count >= $this->min && $count <= $this->max;
     }
 
     /**
