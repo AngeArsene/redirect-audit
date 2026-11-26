@@ -1,0 +1,25 @@
+<?php
+
+namespace {{ namespace }};
+
+/**
+ * Class {{ class }}
+ */
+class {{ class }}
+{
+    /**
+     * Create a new action instance.
+     */
+    public function __construct()
+    {
+        //
+    }
+
+    /**
+     * Execute the action.
+     */
+    public function handle(): void
+    {
+        //
+    }
+}

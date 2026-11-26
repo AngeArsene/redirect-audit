@@ -1,0 +1,2 @@
+id,group,source_url,expected_url,min_hops,max_hops,redirect_status,final_status
+1,5,https://www.abc-immodiag.com/,https://www.abc-immodiag.com/,0,0,,200

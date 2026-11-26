@@ -1,0 +1,25 @@
+<?php
+
+namespace {{ namespace }};
+
+/**
+ * Class {{ class }}
+ */
+final readonly class {{ class }}
+{
+    /**
+     * Create a new value object instance.
+     */
+    public function __construct()
+    {
+        //
+    }
+
+    /**
+     * Determine equality with another instance.
+     */
+    public function equals(self $other): bool
+    {
+        return $this == $other;
+    }
+}
