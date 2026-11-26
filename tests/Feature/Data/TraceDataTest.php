@@ -111,3 +111,27 @@ it('counts the number of redirects', function () {
         ->and($traceWithoutRedirects->redirectCount())->toBe(0)
         ->and($traceWithoutRedirects->redirects())->toBeEmpty();
 });
+
+it('returns the final hop', function () {
+    $finalHop = new HopData(
+        url: new RedirectUrl('https://example.com/final'),
+        status: new HttpStatus(200),
+    );
+
+    $trace = new TraceData(collect([
+        new HopData(
+            url: new RedirectUrl('https://example.com/start'),
+            status: new HttpStatus(301),
+            location: 'https://example.com/final',
+        ),
+        $finalHop,
+    ]));
+
+    expect($trace->finalHop())->toBe($finalHop)
+        ->and((new TraceData(collect([])))->finalHop())->toBeNull();
+});
+
+it('reports whether tracing failed', function () {
+    expect((new TraceData(collect([]), 'Connection timed out'))->failed())->toBeTrue()
+        ->and((new TraceData(collect([])))->failed())->toBeFalse();
+});

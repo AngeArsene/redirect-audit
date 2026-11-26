@@ -42,6 +42,22 @@ final readonly class TraceData
     }
 
     /**
+     * Return the last observed HTTP response, or null for an empty trace.
+     */
+    public function finalHop(): ?HopData
+    {
+        return $this->hops->last();
+    }
+
+    /**
+     * Determine whether tracing ended with an error.
+     */
+    public function failed(): bool
+    {
+        return $this->error !== null;
+    }
+
+    /**
      * Create a new TraceData instance from an array of attributes.
      *
      * @param  array<string, mixed>  $attributes
