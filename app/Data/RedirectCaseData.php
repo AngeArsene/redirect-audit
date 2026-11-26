@@ -48,12 +48,27 @@ final readonly class RedirectCaseData
     }
 
     /**
-     * Create a new RedirectCaseData instance from an array of attributes.
+     * Create a new RedirectCaseData instance from a CSV row associative array.
      *
-     * @param  array<string, mixed>  $attributes
+     * @param  array<string, mixed>  $data
      */
-    public static function fromArray(array $attributes): self
+    public static function fromArray(array $data): self
     {
-        return new self();
+        $redirectStatus = $data['redirect_status'] ?? null;
+
+        return new self(
+            id: (int) $data['id'],
+            group: (int) $data['group'],
+            source: new RedirectUrl((string) $data['source_url']),
+            expected: new RedirectUrl((string) $data['expected_url']),
+            range: RedirectRange::between(
+                (int) $data['min_hops'],
+                (int) $data['max_hops'],
+            ),
+            redirectStatus: $redirectStatus === null || $redirectStatus === ''
+                ? null
+                : new HttpStatus((int) $redirectStatus),
+            finalStatus: new HttpStatus((int) $data['final_status']),
+        );
     }
 }
