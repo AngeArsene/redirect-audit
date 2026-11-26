@@ -22,6 +22,26 @@ final readonly class TraceData
     ) {}
 
     /**
+     * Return only hops representing an HTTP redirect response.
+     *
+     * @return Collection<int, HopData>
+     */
+    public function redirects(): Collection
+    {
+        return $this->hops
+            ->filter(static fn (HopData $hop): bool => $hop->status->isRedirect())
+            ->values();
+    }
+
+    /**
+     * Return the total number of redirect hops in the trace.
+     */
+    public function redirectCount(): int
+    {
+        return $this->redirects()->count();
+    }
+
+    /**
      * Create a new TraceData instance from an array of attributes.
      *
      * @param  array<string, mixed>  $attributes
