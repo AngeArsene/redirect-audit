@@ -40,4 +40,28 @@ final readonly class RedirectRange
     {
         return $this->min === $other->min && $this->max === $other->max;
     }
+
+    /**
+     * Creates a range containing exactly one hop count.
+     */
+    public static function exactly(int $count): self
+    {
+        return new self($count, $count);
+    }
+
+    /**
+     * Creates an inclusive range between two hop counts.
+     */
+    public static function between(int $min, int $max): self
+    {
+        return new self($min, $max);
+    }
+
+    /**
+     * Creates a range that contains no hops.
+     */
+    public static function none(): self
+    {
+        return new self(0, 0);
+    }
 }

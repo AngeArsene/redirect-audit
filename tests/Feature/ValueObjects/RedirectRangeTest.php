@@ -42,3 +42,24 @@ it('determines whether a redirect count is within the allowed range', function (
 
     expect($range->contains($count))->toBe($expected);
 })->with('redirect range contains cases');
+
+it('creates a range with an exact redirect count', function () {
+    $range = RedirectRange::exactly(2);
+
+    expect($range->min)->toBe(2);
+    expect($range->max)->toBe(2);
+});
+
+it('creates a range between two redirect counts', function () {
+    $range = RedirectRange::between(1, 5);
+
+    expect($range->min)->toBe(1);
+    expect($range->max)->toBe(5);
+});
+
+it('creates a range allowing no redirects', function () {
+    $range = RedirectRange::none();
+
+    expect($range->min)->toBe(0);
+    expect($range->max)->toBe(0);
+});
