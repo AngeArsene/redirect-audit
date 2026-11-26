@@ -11,7 +11,7 @@ use Illuminate\Support\Collection;
 
 it('loads audit cases from a CSV file', function () {
     $csv = base_path('tests/Fixtures/redirects/valid-direct-response.csv');
-    $action = new LoadRedirectCases();
+    $action = new LoadRedirectCases;
     $cases = $action->handle($csv);
 
     expect($cases)
