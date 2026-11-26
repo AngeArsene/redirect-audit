@@ -28,8 +28,6 @@ class CheckRedirectsCommand extends Command
     public function handle(LoadRedirectCases $loadRedirectCases)
     {
         $cases = $loadRedirectCases->handle($this->option('cases'));
-
-        dd($cases);
     }
 
     /**

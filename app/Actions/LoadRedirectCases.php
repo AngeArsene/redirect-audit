@@ -2,6 +2,7 @@
 
 namespace App\Actions;
 
+use App\Data\RedirectCaseData;
 use Illuminate\Support\Collection;
 
 /**
@@ -23,14 +24,19 @@ class LoadRedirectCases
     public function handle(string $csv): Collection
     {
         $file = new \SplFileObject($csv, 'r');
-        $file->setFlags(\SplFileObject::READ_CSV | \SplFileObject::SKIP_EMPTY);
+        $file->setFlags(
+            \SplFileObject::READ_CSV
+            | \SplFileObject::READ_AHEAD
+            | \SplFileObject::SKIP_EMPTY
+        );
         $file->setCsvControl(',', '"', '');
 
         $rows = collect(iterator_to_array($file));
         $headers = (array) $rows->shift();
 
         return $rows->map(
-            fn (array $row) => array_combine($headers, $row),
+            fn (array $row): RedirectCaseData =>
+                RedirectCaseData::fromArray(array_combine($headers, $row)),
         );
     }
 }

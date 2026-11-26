@@ -34,9 +34,16 @@ it('creates a redirect case with typed properties', function () {
 });
 
 it('creates a redirect case from CSV data', function () {
-    $csv = base_path('tests/Fixtures/redirects/valid-direct-response.csv');
-
-    $row = (new LoadRedirectCases())->handle($csv)->toArray()[0];
+    $row = [
+        'id' => '1',
+        'group' => '5',
+        'source_url' => 'https://www.abc-immodiag.com/',
+        'expected_url' => 'https://www.abc-immodiag.com/',
+        'min_hops' => '0',
+        'max_hops' => '0',
+        'redirect_status' => '',
+        'final_status' => '200',
+    ];
 
     $case = RedirectCaseData::fromArray($row);
 
