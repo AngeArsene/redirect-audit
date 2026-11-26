@@ -3,3 +3,6 @@
 /.vscode
 /.vagrant
 .phpunit.result.cache
+/reports/*.json
+/reports/*.md
+/reports/*.txt
