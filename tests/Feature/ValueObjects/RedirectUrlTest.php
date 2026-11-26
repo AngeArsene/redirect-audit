@@ -32,3 +32,19 @@ dataset('invalid redirect urls', [
 it('rejects an invalid redirect URL', function (string $url) {
     expect(fn () => new RedirectUrl($url))->toThrow(InvalidArgumentException::class);
 })->with('invalid redirect urls');
+
+dataset('redirect url equality cases', [
+    'identical urls' => ['https://example.com/', 'https://example.com/', true],
+    'different schemes' => ['http://example.com/', 'https://example.com/', false],
+    'different host subdomain' => ['https://example.com/', 'https://www.example.com/', false],
+    'trailing slash vs no trailing slash' => ['https://example.com/page/', 'https://example.com/page', false],
+    'different query parameters' => ['https://example.com/?id=1', 'https://example.com/?id=2', false],
+]);
+
+it('determines whether two redirect URLs are strictly equal', function (string $firstUrl, string $secondUrl, bool $expected) {
+    $firstRedirectUrl = new RedirectUrl($firstUrl);
+    $secondRedirectUrl = new RedirectUrl($secondUrl);
+
+    expect($firstRedirectUrl->equals($secondRedirectUrl))->toBe($expected);
+})->with('redirect url equality cases');
+
